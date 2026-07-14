@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工业智能制造 · 前沿资讯</title>
+    <style>
+        :root {
+            --bg: #0a0e14;
+            --card-bg: #131820;
+            --border: #1e2a3a;
+            --accent: #00c6ff;
+            --accent2: #0072ff;
+            --text: #c8d6e5;
+            --text-muted: #6b7d95;
+            --tag-bg: #0d2137;
+            --tag-text: #4da8da;
+            --time-color: #5c7a99;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a1628 0%, #0d2137 40%, #0a1a2e 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 48px 24px 40px;
+            text-align: center;
+        }
+
+        .hero-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .hero .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .update-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(0, 198, 255, 0.05);
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .update-bar .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00c6ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .news-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            transition: border-color 0.2s, transform 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .news-card:hover {
+            border-color: rgba(0, 198, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .news-card .meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .news-card .tag {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .news-card .source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-card .time {
+            font-size: 12px;
+            color: var(--time-color);
+            margin-left: auto;
+        }
+
+        .news-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #e8edf5;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .news-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .footer span {
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 24px; }
+            .news-card { padding: 16px; }
+            .news-card h3 { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="hero-icon">🏭</div>
+        <h1>工业智能制造 · 前沿资讯</h1>
+        <p class="subtitle">Industrial Smart Manufacturing · Daily Intelligence</p>
+    </div>
+
+    <div class="update-bar">
+        <span class="dot"></span>
+        <span>每日自动更新 · 上次更新：<strong id="updateTime">--</strong></span>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">今日热点</h2>
+        <div class="news-grid" id="newsGrid">
+            <!-- 新闻卡片将由 JS 动态填充 -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Powered by <span>Marvis AI</span> · 每日自动抓取工业智能制造前沿资讯</p>
+    </div>
+
+    <script>
+        // 新闻数据 — 每日由定时任务更新
+        const NEWS_DATA = [{"title":"人工智能\"加盟\"，工厂变得\"聪明\"——美的智能体工厂实现秒级响应","summary":"美的洗衣机荆州工厂14个AI智能体覆盖38个核心生产场景，首检效率从15分钟提升到30秒，排产响应速度提升90%。","url":"https://www.stdaily.com/web/gdxw/2026-07/13/content_546653.html","source":"中国科技网","tag":"AI制造","time":"2026-07-13"},{"title":"粤鲁苏浙竞速AI+制造：36亿补贴、2500亿营收目标、22条举措密集出台","summary":"广东安排36.34亿支持智能化改造，山东目标2028年AI产业营收破2500亿，江苏发布22条AI+制造举措。","url":"https://www.sohu.com/a/1047610281_121483301","source":"搜狐网","tag":"政策动态","time":"2026-07-11"},{"title":"浪潮海岳inSuite亮相工业AI+装备制造论坛，五大场景推动中小企业AI落地","summary":"覆盖设备预测性维护、智能检测等五大场景，中小企业在无需自建AI团队情况下即可实现效率跃升。","url":"https://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/snl9a7/stories/WS6a50a7a9a310d709c2fbce6a.html","source":"中国日报网","tag":"AI制造","time":"2026-07-10"},{"title":"智能工厂建模规则国标发布，2027年2月实施，推动生产系统跨层跨域融合","summary":"《智能工厂生产系统可重构建模规则》(GB/T47859-2026)发布，统一行为建模和信息建模技术准则，支撑柔性生产。","url":"https://www.163.com/dy/article/L1DSHMRV0514R9M0.html","source":"网易","tag":"智能工厂","time":"2026-07-09"},{"title":"里程碑突破：国产点焊机器人首次大规模落地吉利整车焊装主线","summary":"新松机器人打破国外数十年垄断，国产重载机器人从零部件走向整车主线，同步发布双轴悬臂AGV等新品。","url":"https://caifuhao.eastmoney.com/news/20260708112215699157010","source":"东方财富","tag":"机器人","time":"2026-07-08"},{"title":"人民网：工业互联网发展迎来新机遇，核心产业规模超1.6万亿","summary":"我国工业互联网应用覆盖41个工业大类，5G+工业互联网项目超2.5万个，正从连接底座向智能驱动进化。","url":"https://finance.people.com.cn/n1/2026/0706/c1004-40753846.html","source":"人民网","tag":"工业互联网","time":"2026-07-06"},{"title":"数亿元融资落地！光象科技自研物理原生基座模型，发布工业级具身机器人Phi-Bot X1","summary":"Phi-RL Matrix算法让机器人从物理交互中生长出原生智能，Phi-Bot X1已在汽车产线焊接上料工位完成验证。","url":"https://www.infoq.cn/article/m4QJlWAyRq7Fp4yQImp9","source":"InfoQ","tag":"具身智能","time":"2026-07-06"},{"title":"AI赋能智造未来论坛举办：具身智能与人形机器人成新质生产力核心赛道","summary":"浦江学者朱文华指出具身智能将推动生产效率跨越式提升，德州仪器展示从电机控制到功能安全的完整技术矩阵。","url":"https://big5.china.com.cn/gate/big5/photo.china.com.cn/2026-07/04/content_118583175.shtml","source":"中国网","tag":"AI制造","time":"2026-07-04"},{"title":"光明网：释放工业互联网乘数效应，AI与工业互联网双向融合为制造业装\"智能大脑\"","summary":"工业互联网迈过规模化门槛进入提质增效新阶段，工业智能体将具备自感知、自学习、自执行能力。","url":"https://www.toutiao.com/article/7658111466012230195/","source":"光明网","tag":"工业互联网","time":"2026-07-03"},{"title":"八部门联合发文：工业互联网核心产业2030年突破2.5万亿，建设5万张工业5G专网","summary":"工信部等八部门发布《关于推动工业互联网高质量发展的实施意见》，部署基础设施、技术创新等五大方面18项任务。","url":"https://www.cinn.cn/2026/07-02/GDBj0vVD.html","source":"中国工业新闻网","tag":"政策动态","time":"2026-07-02"},{"title":"玉柴AI智能体集群驱动的发动机智能制造工厂入选广西十大引领应用场景","summary":"融合生成式AI与数字孪生验证，零部件设计成功率提升至97.8%，研制周期缩短56.1%，年节约成本5800万元。","url":"http://gxj.yulin.gov.cn/xxgk/xxgkml/zwdt/zwyw/t27829116.shtml","source":"广西玉林政府网","tag":"智能工厂","time":"2026-06-28"},{"title":"各地密集出台\"人工智能+制造\"行动方案，从单点突破迈向系统布局","summary":"山东首创\"一业一市\"揭榜挂帅模式，江苏目标2027年规上企业AI诊断全覆盖，深圳、宁波等重点城市同步发力。","url":"https://www.toutiao.com/article/7655534399449989642/","source":"中国青年网","tag":"政策动态","time":"2026-06-26"}];
+
+        const UPDATE_TIME = "2026年7月14日";
+
+        document.getElementById('updateTime').textContent = UPDATE_TIME || '--';
+
+        const grid = document.getElementById('newsGrid');
+
+        if (!NEWS_DATA || NEWS_DATA.length === 0) {
+            grid.innerHTML = `
+                <div style="text-align:center;padding:60px 20px;color:var(--text-muted);">
+                    <div style="font-size:40px;margin-bottom:12px;">📡</div>
+                    <p>数据加载中，每日定时抓取工业智能制造最新资讯...</p>
+                    <p style="font-size:12px;margin-top:8px;">首次数据将在下一次定时任务执行后展示</p>
+                </div>`;
+        } else {
+            NEWS_DATA.forEach(item => {
+                const card = document.createElement('a');
+                card.className = 'news-card';
+                card.href = item.url || '#';
+                card.target = '_blank';
+                card.rel = 'noopener';
+                card.innerHTML = `
+                    <div class="meta">
+                        <span class="tag">${escapeHtml(item.tag || '智能制造')}</span>
+                        <span class="source">${escapeHtml(item.source || '')}</span>
+                        <span class="time">${escapeHtml(item.time || '')}</span>
+                    </div>
+                    <h3>${escapeHtml(item.title)}</h3>
+                    <p>${escapeHtml(item.summary || '')}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
