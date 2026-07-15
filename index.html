@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工业智能制造 · 前沿资讯</title>
+    <style>
+        :root {
+            --bg: #0a0e14;
+            --card-bg: #131820;
+            --border: #1e2a3a;
+            --accent: #00c6ff;
+            --accent2: #0072ff;
+            --text: #c8d6e5;
+            --text-muted: #6b7d95;
+            --tag-bg: #0d2137;
+            --tag-text: #4da8da;
+            --time-color: #5c7a99;
+            --date-accent: #1a3a5c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a1628 0%, #0d2137 40%, #0a1a2e 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 48px 24px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .hero .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .update-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(0, 198, 255, 0.05);
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .update-bar .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #00c6ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        .date-group {
+            margin-bottom: 36px;
+        }
+
+        .date-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .date-label {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            padding: 4px 14px;
+            background: var(--date-accent);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .date-count {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 22px;
+            transition: border-color 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .news-card:hover {
+            border-color: rgba(0, 198, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .news-card .meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .news-card .tag {
+            font-size: 11px;
+            padding: 2px 9px;
+            border-radius: 4px;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .news-card .source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e8edf5;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .news-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .footer span { color: var(--accent); }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 24px; }
+            .news-card { padding: 14px 16px; }
+            .news-card h3 { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>工业智能制造 · 前沿资讯</h1>
+    <p class="subtitle">Industrial Smart Manufacturing · Daily Intelligence</p>
+</div>
+
+<div class="update-bar">
+    <span class="dot"></span>
+    <span>每日 8:30 自动更新 · 上次更新：<strong id="updateTime">--</strong></span>
+</div>
+
+<div class="container" id="newsContainer">
+    <!-- 新闻由 JS 动态渲染 -->
+</div>
+
+<div class="footer">
+    <p>Powered by <span>Marvis AI</span> · 每日自动抓取工业智能制造前沿资讯</p>
+</div>
+
+<script>
+// ===== 新闻数据（按日期分组，每日追加不覆盖） =====
+var NEWS_BY_DATE = {
+  "2026-07-14": [
+    {
+      "title": "OFweek 2026(第七届)中国智能制造产业大会圆满收官",
+      "summary": "发布《2026人工智能+场景化智能制造发展蓝皮书》，覆盖钢铁、新能源汽车、机器人等14大行业，预测未来36个月智能工厂市场规模达2.2万亿元。",
+      "url": "https://www.shenchuang.com/gdrd/20260714/1691673.shtml",
+      "source": "深圳之窗",
+      "tag": "产业大会"
+    },
+    {
+      "title": "小米机器人进汽车工厂！98%成功率逼近人类",
+      "summary": "小米自研工业机器人在汽车产线自攻螺母上件工站双侧作业成功率达98%，中控台侧盖板排序+料箱折叠回收双双突破90%，标志工业机器人正式进入产线常态化部署。",
+      "url": "https://m.sohu.com/a/1050173100_122066679",
+      "source": "大河财立方",
+      "tag": "工业机器人"
+    }
+  ],
+  "2026-07-11": [
+    {
+      "title": "Figure AI人形机器人直播200小时零硬件故障",
+      "summary": "Figure AI三台F03人形机器人连续工作200小时处理近25万件包裹零故障；智元机器人八台轮式机器人在平板质检线同步工人作业连续六天。",
+      "url": "https://m.10jqka.com.cn/20260711/c678113392.shtml",
+      "source": "同花顺财经",
+      "tag": "人形机器人"
+    }
+  ],
+  "2026-07-10": [
+    {
+      "title": "八部门联合推动工业互联网高质量发展",
+      "summary": "工信部等八部门印发实施意见，到2030年建设5万张工业5G专网，核心产业增加值突破2.5万亿元。",
+      "url": "https://www.toutiao.com/article/7660686465084457478/",
+      "source": "今日头条",
+      "tag": "政策发布"
+    }
+  ],
+  "2026-07-09": [
+    {
+      "title": "智能工厂建模规则国标发布 推动跨层跨域融合",
+      "summary": "GB/T47859—2026发布，统一生产系统行为重构与信息建模技术准则，为离散制造业快速换产提供国家级标准化支撑，2027年2月1日起实施。",
+      "url": "https://so.html5.qq.com/page/real/search_news?docid=70000021_8016a4f8ec447052",
+      "source": "人民网",
+      "tag": "标准发布"
+    },
+    {
+      "title": "五部门开展工业5G独立专网试点",
+      "summary": "工信部等五部门联合印发通知，支持大型企业建设不依赖公网独立运行的5G专网，探索建用维管新模式。",
+      "url": "https://jxj.cngy.gov.cn/gongkai/show/a3f6007bcb1f4be8a59ad3b682af9911.html",
+      "source": "广元市政府网",
+      "tag": "5G专网"
+    }
+  ],
+  "2026-07-08": [
+    {
+      "title": "北自所智能制造关键技术获国家科技进步奖一等奖",
+      "summary": "自主开发聚酯纤维生产全流程智能物流系统关键技术与成套装备，打破国外垄断填补国内空白，保障近万亿级产业链装备自主可控。",
+      "url": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-07-09/603082_20260709_FALX.pdf",
+      "source": "上交所公告",
+      "tag": "技术创新"
+    }
+  ],
+  "2026-07-07": [
+    {
+      "title": "ISO 10218:2025工业机器人安全新规改变竞争格局",
+      "summary": "Interact Analysis指出ISO 10218:2025机器人安全标准正推动全球供应商重新评估产品安全体系，安全合规将成为进入欧美市场门槛。",
+      "url": "https://gyznsw.cn/2026/07/07/",
+      "source": "工业智能算网",
+      "tag": "安全标准"
+    },
+    {
+      "title": "Nidec推出NC Twin：机床数字孪生进入加工验证流程",
+      "summary": "Nidec Machine Tool发布NC Twin数字孪生平台，机床加工验证正从现场试切转向虚拟仿真，大幅降低实物验证成本。",
+      "url": "https://gyznsw.cn/2026/07/07/",
+      "source": "工业智能算网",
+      "tag": "数字孪生"
+    }
+  ],
+  "2026-07-06": [
+    {
+      "title": "全国首个5G+AI+新型工业控制工厂创新实践成果发布",
+      "summary": "中天钢铁联合中国信通院、华为、汇川技术在淮安基地发布成果，构建网-算-控一体化体系，单厂减少72万米网线。",
+      "url": "https://m.gkong.com/news/126459.html",
+      "source": "工控网",
+      "tag": "5G+AI"
+    }
+  ],
+  "2026-07-01": [
+    {
+      "title": "八部门发文：2030年工业互联网核心产业增加值突破2.5万亿",
+      "summary": "《实施意见》围绕五大方面部署18项任务，培育一批5G工厂，重点行业安全分类分级普及率达80%。",
+      "url": "https://www.news.cn/fortune/20260701/908db3372f184cafb807b09fb8e78ed3/c.html",
+      "source": "新华网",
+      "tag": "政策发布"
+    }
+  ]
+};
+
+var UPDATE_TIME = "2026年7月15日";
+
+document.getElementById('updateTime').textContent = UPDATE_TIME || '--';
+
+var container = document.getElementById('newsContainer');
+
+if (!NEWS_BY_DATE || Object.keys(NEWS_BY_DATE).length === 0) {
+    container.innerHTML =
+        '<div style="text-align:center;padding:60px 20px;color:var(--text-muted);">' +
+        '<div style="font-size:40px;margin-bottom:12px;">📡</div>' +
+        '<p>数据加载中，每日定时抓取工业智能制造最新资讯...</p></div>';
+} else {
+    // 按日期倒序排列
+    var dates = Object.keys(NEWS_BY_DATE).sort(function(a, b) { return b.localeCompare(a); });
+
+    dates.forEach(function(date) {
+        var newsList = NEWS_BY_DATE[date];
+        if (!newsList || newsList.length === 0) return;
+
+        var group = document.createElement('div');
+        group.className = 'date-group';
+
+        var labelText = date;
+        // 判断是否今天
+        var today = new Date().toISOString().slice(0, 10);
+        if (date === today) {
+            labelText = '📌 今日热点 · ' + date;
+        }
+
+        group.innerHTML =
+            '<div class="date-header">' +
+            '<span class="date-label">' + escHtml(labelText) + '</span>' +
+            '<span class="date-count">' + newsList.length + ' 条资讯</span>' +
+            '</div>' +
+            '<div class="news-grid" id="grid-' + date + '"></div>';
+
+        container.appendChild(group);
+
+        var grid = document.getElementById('grid-' + date);
+        newsList.forEach(function(item) {
+            var card = document.createElement('a');
+            card.className = 'news-card';
+            card.href = item.url || '#';
+            card.target = '_blank';
+            card.rel = 'noopener';
+            card.innerHTML =
+                '<div class="meta">' +
+                '<span class="tag">' + escHtml(item.tag || '智能制造') + '</span>' +
+                '<span class="source">' + escHtml(item.source || '') + '</span>' +
+                '</div>' +
+                '<h3>' + escHtml(item.title) + '</h3>' +
+                '<p>' + escHtml(item.summary || '') + '</p>';
+            grid.appendChild(card);
+        });
+    });
+}
+
+function escHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+}
+</script>
+</body>
+</html>
