@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang=zh-CN>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工业智能制造 · 前沿资讯</title>
+    <meta charset=UTF-8>
+    <meta name=viewport content=width=device-width, initial-scale=1.0>
+    <title>宸ヤ笟鏅鸿兘鍒堕€?路 鍓嶆部璧勮</title>
     <style>
         :root {
             --bg: #0a0e14;
@@ -16,6 +16,7 @@
             --tag-bg: #0d2137;
             --tag-text: #4da8da;
             --time-color: #5c7a99;
+            --date-accent: #1a3a5c;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,7 +24,7 @@
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif;
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -33,11 +34,6 @@
             border-bottom: 1px solid var(--border);
             padding: 48px 24px 40px;
             text-align: center;
-        }
-
-        .hero-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
         }
 
         .hero h1 {
@@ -68,8 +64,7 @@
         }
 
         .update-bar .dot {
-            width: 8px;
-            height: 8px;
+            width: 8px; height: 8px;
             border-radius: 50%;
             background: #00c6ff;
             animation: pulse 2s infinite;
@@ -86,27 +81,45 @@
             padding: 32px 24px;
         }
 
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
+        .date-group {
+            margin-bottom: 36px;
+        }
+
+        .date-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .date-label {
+            font-size: 17px;
+            font-weight: 700;
             color: #fff;
-            margin-bottom: 20px;
-            padding-left: 12px;
+            padding: 4px 14px;
+            background: var(--date-accent);
+            border-radius: 6px;
             border-left: 3px solid var(--accent);
+        }
+
+        .date-count {
+            font-size: 12px;
+            color: var(--text-muted);
         }
 
         .news-grid {
             display: grid;
-            gap: 16px;
+            gap: 12px;
         }
 
         .news-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 20px 24px;
+            padding: 18px 22px;
             transition: border-color 0.2s, transform 0.2s;
-            cursor: pointer;
             text-decoration: none;
             display: block;
             color: inherit;
@@ -120,14 +133,14 @@
         .news-card .meta {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 10px;
+            gap: 10px;
+            margin-bottom: 8px;
             flex-wrap: wrap;
         }
 
         .news-card .tag {
             font-size: 11px;
-            padding: 3px 10px;
+            padding: 2px 9px;
             border-radius: 4px;
             background: var(--tag-bg);
             color: var(--tag-text);
@@ -140,28 +153,18 @@
             color: var(--text-muted);
         }
 
-        .news-card .time {
-            font-size: 12px;
-            color: var(--time-color);
-            margin-left: auto;
-        }
-
         .news-card h3 {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
             color: #e8edf5;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1.5;
         }
 
         .news-card p {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-muted);
-            line-height: 1.7;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            line-height: 1.6;
         }
 
         .footer {
@@ -173,83 +176,195 @@
             margin-top: 40px;
         }
 
-        .footer span {
-            color: var(--accent);
-        }
+        .footer span { color: var(--accent); }
 
         @media (max-width: 600px) {
             .hero h1 { font-size: 24px; }
-            .news-card { padding: 16px; }
+            .news-card { padding: 14px 16px; }
             .news-card h3 { font-size: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <div class="hero-icon">🏭</div>
-        <h1>工业智能制造 · 前沿资讯</h1>
-        <p class="subtitle">Industrial Smart Manufacturing · Daily Intelligence</p>
-    </div>
+<div class=hero>
+    <h1>宸ヤ笟鏅鸿兘鍒堕€?路 鍓嶆部璧勮</h1>
+    <p class=subtitle>Industrial Smart Manufacturing 路 Daily Intelligence</p>
+</div>
 
-    <div class="update-bar">
-        <span class="dot"></span>
-        <span>每日自动更新 · 上次更新：<strong id="updateTime">--</strong></span>
-    </div>
+<div class=update-bar>
+    <span class=dot></span>
+    <span>姣忔棩 8:30 鑷姩鏇存柊 路 涓婃鏇存柊锛?strong id=updateTime>--</strong></span>
+</div>
 
-    <div class="container">
-        <h2 class="section-title">今日热点</h2>
-        <div class="news-grid" id="newsGrid">
-            <!-- 新闻卡片将由 JS 动态填充 -->
-        </div>
-    </div>
+<div class=container id=newsContainer>
+    <!-- 鏂伴椈鐢?JS 鍔ㄦ€佹覆鏌?-->
+</div>
 
-    <div class="footer">
-        <p>Powered by <span>Marvis AI</span> · 每日自动抓取工业智能制造前沿资讯</p>
-    </div>
+<div class=footer>
+    <p>Powered by <span>Marvis AI</span> 路 姣忔棩鑷姩鎶撳彇宸ヤ笟鏅鸿兘鍒堕€犲墠娌胯祫璁?/p>
+</div>
 
-    <script>
-        // 新闻数据 — 每日由定时任务更新
-        const NEWS_DATA = [{"title":"人工智能\"加盟\"，工厂变得\"聪明\"——美的智能体工厂实现秒级响应","summary":"美的洗衣机荆州工厂14个AI智能体覆盖38个核心生产场景，首检效率从15分钟提升到30秒，排产响应速度提升90%。","url":"https://www.stdaily.com/web/gdxw/2026-07/13/content_546653.html","source":"中国科技网","tag":"AI制造","time":"2026-07-13"},{"title":"粤鲁苏浙竞速AI+制造：36亿补贴、2500亿营收目标、22条举措密集出台","summary":"广东安排36.34亿支持智能化改造，山东目标2028年AI产业营收破2500亿，江苏发布22条AI+制造举措。","url":"https://www.sohu.com/a/1047610281_121483301","source":"搜狐网","tag":"政策动态","time":"2026-07-11"},{"title":"浪潮海岳inSuite亮相工业AI+装备制造论坛，五大场景推动中小企业AI落地","summary":"覆盖设备预测性维护、智能检测等五大场景，中小企业在无需自建AI团队情况下即可实现效率跃升。","url":"https://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/snl9a7/stories/WS6a50a7a9a310d709c2fbce6a.html","source":"中国日报网","tag":"AI制造","time":"2026-07-10"},{"title":"智能工厂建模规则国标发布，2027年2月实施，推动生产系统跨层跨域融合","summary":"《智能工厂生产系统可重构建模规则》(GB/T47859-2026)发布，统一行为建模和信息建模技术准则，支撑柔性生产。","url":"https://www.163.com/dy/article/L1DSHMRV0514R9M0.html","source":"网易","tag":"智能工厂","time":"2026-07-09"},{"title":"里程碑突破：国产点焊机器人首次大规模落地吉利整车焊装主线","summary":"新松机器人打破国外数十年垄断，国产重载机器人从零部件走向整车主线，同步发布双轴悬臂AGV等新品。","url":"https://caifuhao.eastmoney.com/news/20260708112215699157010","source":"东方财富","tag":"机器人","time":"2026-07-08"},{"title":"人民网：工业互联网发展迎来新机遇，核心产业规模超1.6万亿","summary":"我国工业互联网应用覆盖41个工业大类，5G+工业互联网项目超2.5万个，正从连接底座向智能驱动进化。","url":"https://finance.people.com.cn/n1/2026/0706/c1004-40753846.html","source":"人民网","tag":"工业互联网","time":"2026-07-06"},{"title":"数亿元融资落地！光象科技自研物理原生基座模型，发布工业级具身机器人Phi-Bot X1","summary":"Phi-RL Matrix算法让机器人从物理交互中生长出原生智能，Phi-Bot X1已在汽车产线焊接上料工位完成验证。","url":"https://www.infoq.cn/article/m4QJlWAyRq7Fp4yQImp9","source":"InfoQ","tag":"具身智能","time":"2026-07-06"},{"title":"AI赋能智造未来论坛举办：具身智能与人形机器人成新质生产力核心赛道","summary":"浦江学者朱文华指出具身智能将推动生产效率跨越式提升，德州仪器展示从电机控制到功能安全的完整技术矩阵。","url":"https://big5.china.com.cn/gate/big5/photo.china.com.cn/2026-07/04/content_118583175.shtml","source":"中国网","tag":"AI制造","time":"2026-07-04"},{"title":"光明网：释放工业互联网乘数效应，AI与工业互联网双向融合为制造业装\"智能大脑\"","summary":"工业互联网迈过规模化门槛进入提质增效新阶段，工业智能体将具备自感知、自学习、自执行能力。","url":"https://www.toutiao.com/article/7658111466012230195/","source":"光明网","tag":"工业互联网","time":"2026-07-03"},{"title":"八部门联合发文：工业互联网核心产业2030年突破2.5万亿，建设5万张工业5G专网","summary":"工信部等八部门发布《关于推动工业互联网高质量发展的实施意见》，部署基础设施、技术创新等五大方面18项任务。","url":"https://www.cinn.cn/2026/07-02/GDBj0vVD.html","source":"中国工业新闻网","tag":"政策动态","time":"2026-07-02"},{"title":"玉柴AI智能体集群驱动的发动机智能制造工厂入选广西十大引领应用场景","summary":"融合生成式AI与数字孪生验证，零部件设计成功率提升至97.8%，研制周期缩短56.1%，年节约成本5800万元。","url":"http://gxj.yulin.gov.cn/xxgk/xxgkml/zwdt/zwyw/t27829116.shtml","source":"广西玉林政府网","tag":"智能工厂","time":"2026-06-28"},{"title":"各地密集出台\"人工智能+制造\"行动方案，从单点突破迈向系统布局","summary":"山东首创\"一业一市\"揭榜挂帅模式，江苏目标2027年规上企业AI诊断全覆盖，深圳、宁波等重点城市同步发力。","url":"https://www.toutiao.com/article/7655534399449989642/","source":"中国青年网","tag":"政策动态","time":"2026-06-26"}];
+<script>
+// ===== 鏂伴椈鏁版嵁锛堟寜鏃ユ湡鍒嗙粍锛屾瘡鏃ヨ拷鍔犱笉瑕嗙洊锛?=====
+var NEWS_BY_DATE = {
+  2026-07-14: [
+    {
+      title: OFweek 2026(绗竷灞?涓浗鏅鸿兘鍒堕€犱骇涓氬ぇ浼氬渾婊℃敹瀹?,
+ summary: 鍙戝竷銆?026浜哄伐鏅鸿兘+鍦烘櫙鍖栨櫤鑳藉埗閫犲彂灞曡摑鐨功銆嬶紝瑕嗙洊閽㈤搧銆佹柊鑳芥簮姹借溅銆佹満鍣ㄤ汉绛?4澶ц涓氾紝棰勬祴鏈潵36涓湀鏅鸿兘宸ュ巶甯傚満瑙勬ā杈?.2涓囦嚎鍏冦€?,
+      url: https://www.shenchuang.com/gdrd/20260714/1691673.shtml,
+      source: 娣卞湷涔嬬獥,
+      tag: 浜т笟澶т細
+    },
+    {
+      title: 灏忕背鏈哄櫒浜鸿繘姹借溅宸ュ巶锛?8%鎴愬姛鐜囬€艰繎浜虹被,
+      summary: 灏忕背鑷爺宸ヤ笟鏈哄櫒浜哄湪姹借溅浜х嚎鑷敾铻烘瘝涓婁欢宸ョ珯鍙屼晶浣滀笟鎴愬姛鐜囪揪98%锛屼腑鎺у彴渚х洊鏉挎帓搴?鏂欑鎶樺彔鍥炴敹鍙屽弻绐佺牬90%锛屾爣蹇楀伐涓氭満鍣ㄤ汉姝ｅ紡杩涘叆浜х嚎甯告€佸寲閮ㄧ讲銆?,
+ url: https://m.sohu.com/a/1050173100_122066679,
+ source: 澶ф渤璐㈢珛鏂?,
+      tag: 宸ヤ笟鏈哄櫒浜?
+ }
+ ],
+ 2026-07-11: [
+ {
+ title: Figure AI浜哄舰鏈哄櫒浜虹洿鎾?00灏忔椂闆剁‖浠舵晠闅?,
+      summary: Figure AI涓夊彴F03浜哄舰鏈哄櫒浜鸿繛缁伐浣?00灏忔椂澶勭悊杩?5涓囦欢鍖呰９闆舵晠闅滐紱鏅哄厓鏈哄櫒浜哄叓鍙拌疆寮忔満鍣ㄤ汉鍦ㄥ钩鏉胯川妫€绾垮悓姝ュ伐浜轰綔涓氳繛缁叚澶┿€?,
+ url: https://m.10jqka.com.cn/20260711/c678113392.shtml,
+ source: 鍚岃姳椤鸿储缁?,
+      tag: 浜哄舰鏈哄櫒浜?
+ }
+ ],
+ 2026-07-10: [
+ {
+ title: 鍏儴闂ㄨ仈鍚堟帹鍔ㄥ伐涓氫簰鑱旂綉楂樿川閲忓彂灞?,
+      summary: 宸ヤ俊閮ㄧ瓑鍏儴闂ㄥ嵃鍙戝疄鏂芥剰瑙侊紝鍒?030骞村缓璁?涓囧紶宸ヤ笟5G涓撶綉锛屾牳蹇冧骇涓氬鍔犲€肩獊鐮?.5涓囦嚎鍏冦€?,
+ url: https://www.toutiao.com/article/7660686465084457478/,
+ source: 浠婃棩澶存潯,
+ tag: 鏀跨瓥鍙戝竷
+ }
+ ],
+ 2026-07-09: [
+ {
+ title: 鏅鸿兘宸ュ巶寤烘ā瑙勫垯鍥芥爣鍙戝竷 鎺ㄥ姩璺ㄥ眰璺ㄥ煙铻嶅悎,
+ summary: GB/T47859鈥?026鍙戝竷锛岀粺涓€鐢熶骇绯荤粺琛屼负閲嶆瀯涓庝俊鎭缓妯℃妧鏈噯鍒欙紝涓虹鏁ｅ埗閫犱笟蹇€熸崲浜ф彁渚涘浗瀹剁骇鏍囧噯鍖栨敮鎾戯紝2027骞?鏈?鏃ヨ捣瀹炴柦銆?,
+      url: https://so.html5.qq.com/page/real/search_news?docid=70000021_8016a4f8ec447052,
+      source: 浜烘皯缃?,
+ tag: 鏍囧噯鍙戝竷
+ },
+ {
+ title: 浜旈儴闂ㄥ紑灞曞伐涓?G鐙珛涓撶綉璇曠偣,
+ summary: 宸ヤ俊閮ㄧ瓑浜旈儴闂ㄨ仈鍚堝嵃鍙戦€氱煡锛屾敮鎸佸ぇ鍨嬩紒涓氬缓璁句笉渚濊禆鍏綉鐙珛杩愯鐨?G涓撶綉锛屾帰绱㈠缓鐢ㄧ淮绠℃柊妯″紡銆?,
+      url: https://jxj.cngy.gov.cn/gongkai/show/a3f6007bcb1f4be8a59ad3b682af9911.html,
+      source: 骞垮厓甯傛斂搴滅綉,
+      tag: 5G涓撶綉
+    }
+  ],
+  2026-07-08: [
+    {
+      title: 鍖楄嚜鎵€鏅鸿兘鍒堕€犲叧閿妧鏈幏鍥藉绉戞妧杩涙濂栦竴绛夊,
+      summary: 鑷富寮€鍙戣仛閰氦缁寸敓浜у叏娴佺▼鏅鸿兘鐗╂祦绯荤粺鍏抽敭鎶€鏈笌鎴愬瑁呭锛屾墦鐮村浗澶栧瀯鏂～琛ュ浗鍐呯┖鐧斤紝淇濋殰杩戜竾浜跨骇浜т笟閾捐澶囪嚜涓诲彲鎺с€?,
+ url: https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-07-09/603082_20260709_FALX.pdf,
+ source: 涓婁氦鎵€鍏憡,
+ tag: 鎶€鏈垱鏂?
+    }
+  ],
+  2026-07-07: [
+    {
+      title: ISO 10218:2025宸ヤ笟鏈哄櫒浜哄畨鍏ㄦ柊瑙勬敼鍙樼珵浜夋牸灞€,
+      summary: Interact Analysis鎸囧嚭ISO 10218:2025鏈哄櫒浜哄畨鍏ㄦ爣鍑嗘鎺ㄥ姩鍏ㄧ悆渚涘簲鍟嗛噸鏂拌瘎浼颁骇鍝佸畨鍏ㄤ綋绯伙紝瀹夊叏鍚堣灏嗘垚涓鸿繘鍏ユ缇庡競鍦洪棬妲涖€?,
+ url: https://gyznsw.cn/2026/07/07/,
+ source: 宸ヤ笟鏅鸿兘绠楃綉,
+ tag: 瀹夊叏鏍囧噯
+ },
+ {
+ title: Nidec鎺ㄥ嚭NC Twin锛氭満搴婃暟瀛楀鐢熻繘鍏ュ姞宸ラ獙璇佹祦绋?,
+      summary: Nidec Machine Tool鍙戝竷NC Twin鏁板瓧瀛敓骞冲彴锛屾満搴婂姞宸ラ獙璇佹浠庣幇鍦鸿瘯鍒囪浆鍚戣櫄鎷熶豢鐪燂紝澶у箙闄嶄綆瀹炵墿楠岃瘉鎴愭湰銆?,
+ url: https://gyznsw.cn/2026/07/07/,
+ source: 宸ヤ笟鏅鸿兘绠楃綉,
+ tag: 鏁板瓧瀛敓
+ }
+ ],
+ 2026-07-06: [
+ {
+ title: 鍏ㄥ浗棣栦釜5G+AI+鏂板瀷宸ヤ笟鎺у埗宸ュ巶鍒涙柊瀹炶返鎴愭灉鍙戝竷,
+ summary: 涓ぉ閽㈤搧鑱斿悎涓浗淇￠€氶櫌銆佸崕涓恒€佹眹宸濇妧鏈湪娣畨鍩哄湴鍙戝竷鎴愭灉锛屾瀯寤虹綉-绠?鎺т竴浣撳寲浣撶郴锛屽崟鍘傚噺灏?2涓囩背缃戠嚎銆?,
+      url: https://m.gkong.com/news/126459.html,
+      source: 宸ユ帶缃?,
+ tag: 5G+AI
+ }
+ ],
+ 2026-07-01: [
+ {
+ title: 鍏儴闂ㄥ彂鏂囷細2030骞村伐涓氫簰鑱旂綉鏍稿績浜т笟澧炲姞鍊肩獊鐮?.5涓囦嚎,
+ summary: 銆婂疄鏂芥剰瑙併€嬪洿缁曚簲澶ф柟闈㈤儴缃?8椤逛换鍔★紝鍩硅偛涓€鎵?G宸ュ巶锛岄噸鐐硅涓氬畨鍏ㄥ垎绫诲垎绾ф櫘鍙婄巼杈?0%銆?,
+      url: https://www.news.cn/fortune/20260701/908db3372f184cafb807b09fb8e78ed3/c.html,
+      source: 鏂板崕缃?,
+ tag: 鏀跨瓥鍙戝竷
+ }
+ ]
+};
 
-        const UPDATE_TIME = "2026年7月14日";
+var UPDATE_TIME = 2026骞?鏈?5鏃?;
 
-        document.getElementById('updateTime').textContent = UPDATE_TIME || '--';
+document.getElementById('updateTime').textContent = UPDATE_TIME || '--';
 
-        const grid = document.getElementById('newsGrid');
+var container = document.getElementById('newsContainer');
 
-        if (!NEWS_DATA || NEWS_DATA.length === 0) {
-            grid.innerHTML = `
-                <div style="text-align:center;padding:60px 20px;color:var(--text-muted);">
-                    <div style="font-size:40px;margin-bottom:12px;">📡</div>
-                    <p>数据加载中，每日定时抓取工业智能制造最新资讯...</p>
-                    <p style="font-size:12px;margin-top:8px;">首次数据将在下一次定时任务执行后展示</p>
-                </div>`;
-        } else {
-            NEWS_DATA.forEach(item => {
-                const card = document.createElement('a');
-                card.className = 'news-card';
-                card.href = item.url || '#';
-                card.target = '_blank';
-                card.rel = 'noopener';
-                card.innerHTML = `
-                    <div class="meta">
-                        <span class="tag">${escapeHtml(item.tag || '智能制造')}</span>
-                        <span class="source">${escapeHtml(item.source || '')}</span>
-                        <span class="time">${escapeHtml(item.time || '')}</span>
-                    </div>
-                    <h3>${escapeHtml(item.title)}</h3>
-                    <p>${escapeHtml(item.summary || '')}</p>
-                `;
-                grid.appendChild(card);
-            });
+if (!NEWS_BY_DATE || Object.keys(NEWS_BY_DATE).length === 0) {
+    container.innerHTML =
+        '<div style=text-align:center;padding:60px 20px;color:var(--text-muted);>' +
+        '<div style=font-size:40px;margin-bottom:12px;>馃摗</div>' +
+        '<p>鏁版嵁鍔犺浇涓紝姣忔棩瀹氭椂鎶撳彇宸ヤ笟鏅鸿兘鍒堕€犳渶鏂拌祫璁?..</p></div>';
+} else {
+    // 鎸夋棩鏈熷€掑簭鎺掑垪
+    var dates = Object.keys(NEWS_BY_DATE).sort(function(a, b) { return b.localeCompare(a); });
+
+    dates.forEach(function(date) {
+        var newsList = NEWS_BY_DATE[date];
+        if (!newsList || newsList.length === 0) return;
+
+        var group = document.createElement('div');
+        group.className = 'date-group';
+
+        var labelText = date;
+        // 鍒ゆ柇鏄惁浠婂ぉ
+        var today = new Date().toISOString().slice(0, 10);
+        if (date === today) {
+            labelText = '馃搶 浠婃棩鐑偣 路 ' + date;
         }
 
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-    </script>
+        group.innerHTML =
+            '<div class=date-header>' +
+            '<span class=date-label>' + escHtml(labelText) + '</span>' +
+            '<span class=date-count>' + newsList.length + ' 鏉¤祫璁?/span>' +
+            '</div>' +
+            '<div class=news-grid id=grid-' + date + '></div>';
+
+        container.appendChild(group);
+
+        var grid = document.getElementById('grid-' + date);
+        newsList.forEach(function(item) {
+            var card = document.createElement('a');
+            card.className = 'news-card';
+            card.href = item.url || '#';
+            card.target = '_blank';
+            card.rel = 'noopener';
+            card.innerHTML =
+                '<div class=meta>' +
+                '<span class=tag>' + escHtml(item.tag || '鏅鸿兘鍒堕€?) + '</span>' +
+                '<span class=source>' + escHtml(item.source || '') + '</span>' +
+                '</div>' +
+                '<h3>' + escHtml(item.title) + '</h3>' +
+                '<p>' + escHtml(item.summary || '') + '</p>';
+            grid.appendChild(card);
+        });
+    });
+}
+
+function escHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+}
+</script>
 </body>
 </html>
