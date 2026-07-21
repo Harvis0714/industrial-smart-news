@@ -1,6 +1,174 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-...（共 647 行内容，此处简写）...
- var UPDATE_TIME = "2026年7月21日";
-...
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工业智能制造新闻速递</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0f1923; color: #e0e6ed; line-height: 1.7; }
+.header { background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%); border-bottom: 2px solid #00d4ff; padding: 32px 20px; text-align: center; }
+.header h1 { font-size: 2em; color: #00d4ff; letter-spacing: 2px; margin-bottom: 6px; }
+.header .subtitle { color: #6b8aab; font-size: 0.95em; }
+.header .update-time { margin-top: 10px; color: #4a6a8a; font-size: 0.85em; }
+.container { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
+.date-group { margin-bottom: 36px; }
+.date-label { font-size: 1.3em; font-weight: 700; color: #00d4ff; border-left: 4px solid #00d4ff; padding-left: 14px; margin-bottom: 16px; }
+.news-card { background: #162433; border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; transition: all 0.2s; border: 1px solid #1e3347; }
+.news-card:hover { border-color: #00d4ff; transform: translateX(4px); }
+.news-card .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.news-card .tag { display: inline-block; padding: 2px 10px; border-radius: 3px; font-size: 0.8em; font-weight: 600; letter-spacing: 1px; flex-shrink: 0; }
+.tag-policy { background: rgba(0,212,255,0.15); color: #00d4ff; }
+.tag-data { background: rgba(0,200,83,0.15); color: #00c853; }
+.tag-tech { background: rgba(255,171,0,0.15); color: #ffab00; }
+.tag-digital { background: rgba(100,180,255,0.15); color: #64b5f6; }
+.tag-lighthouse { background: rgba(255,82,82,0.15); color: #ff5252; }
+.tag-equip { background: rgba(186,104,200,0.15); color: #ba68c8; }
+.tag-trend { background: rgba(38,198,218,0.15); color: #26c6da; }
+.news-card .title { font-size: 1.1em; font-weight: 600; color: #ffffff; line-height: 1.5; }
+.news-card .summary { color: #9ab3c9; font-size: 0.92em; margin: 8px 0 12px; }
+.news-card .meta { display: flex; gap: 16px; font-size: 0.82em; color: #5a7a9a; }
+.news-card .meta a { color: #00d4ff; text-decoration: none; }
+.news-card .meta a:hover { text-decoration: underline; }
+.footer { text-align: center; padding: 20px; color: #3a5a7a; font-size: 0.82em; border-top: 1px solid #1a2a3a; margin-top: 20px; }
+.footer a { color: #4a7a9a; }
+@media (max-width: 600px) { .header h1 { font-size: 1.5em; } .news-card { padding: 14px 16px; } }
+</style>
+</head>
+<body>
+<div class="header">
+    <h1>工业智能制造 · 新闻速递</h1>
+    <div class="subtitle">聚焦智能制造、工业4.0、数字化转型前沿动态</div>
+    <div class="update-time" id="updateTime">数据更新中...</div>
+</div>
+<div class="container" id="newsContainer"></div>
+<div class="footer">
+    数据来源：公开新闻报道 &nbsp;|&nbsp; 自动更新于每日 8:30
+    <br><a href="https://github.com/Harvis0714/industrial-smart-news" target="_blank">GitHub</a>
+</div>
+
+<script>
+var UPDATE_TIME = "2026年7月21日";
+
+var NEWS_BY_DATE = {
+  "2026年7月21日": [
+    {
+      "title": "工信部：上半年高技术制造业增加值增长13.3%，AI赋能成效显著",
+      "summary": "工信部发布2026年上半年工业经济运行数据，高技术制造业增加值同比增长13.3%，装备制造业增长9.3%。人工智能在制造业的应用深度持续提升，智能工厂建设加速推进，工业AI大模型已在钢铁、医药、化工等多个行业落地。",
+      "url": "https://www.miit.gov.cn/",
+      "source": "工信部",
+      "tag": "政策动态"
+    },
+    {
+      "title": "我国工业机器人产量上半年同比增长超80%",
+      "summary": "北京市经信局数据显示，2026年1-5月工业机器人产量同比增长80.4%，服务机器人增长1.6倍。新能源汽车产量增长26.2%，集成电路制造业增速达82.5%，智能制造产业进入规模化量产新阶段。",
+      "url": "https://www.toutiao.com/article/7662011953599726099",
+      "source": "北青网",
+      "tag": "产业数据"
+    },
+    {
+      "title": "西门子发布工业AI助手最新版本，实现自然语言控制产线",
+      "summary": "西门子在2026慕尼黑工业博览会上发布Industrial Copilot 3.0，支持工程师使用自然语言直接对产线设备进行编程和调试，大幅降低自动化门槛。系统内置200+工业场景模型，可自动生成PLC代码并实时监控设备状态。",
+      "url": "https://www.siemens.com/",
+      "source": "西门子",
+      "tag": "技术前沿"
+    }
+  ],
+  "2026年7月20日": [
+    {
+      "title": "广东智造向外走：AI智能体重塑制造范式，模块化方案降低转型门槛",
+      "summary": "美的荆州工厂14个工业智能体覆盖38个核心生产场景，核心场景平均提效80%以上，排产响应速度提升90%。'大湾区研发+场景化落地'协同模式已在中西部多家企业落地，今年6月正式发布出海解决方案，已在泰国等东南亚国家生产基地完成验证。",
+      "url": "https://paper.people.com.cn/zgcsb/pc/content/202607/20/content_30169800.html",
+      "source": "人民网",
+      "tag": "数字化转型"
+    },
+    {
+      "title": "数智融合持续深化，制造业数字化转型走深向实",
+      "summary": "国家统计局数据显示，上半年全国规上工业增加值同比增长5.4%，装备制造业、高技术制造业增速分别快于全部规上工业3.9和7.9个百分点。江苏钢铁企业引入AI模型实现高炉工况实时预警，南京大学沈坤荣教授表示人工智能正驱动制造业向更高品质、更绿色低碳方向迈进。",
+      "url": "https://k.sina.com.cn/article_7517400647_1c0126e4705908ug8q.html",
+      "source": "人民网",
+      "tag": "数字化转型"
+    },
+    {
+      "title": "发那科推出新一代协作机器人CRX-30iA，负载提升至30kg",
+      "summary": "发那科发布全新一代协作机器人CRX-30iA，最大负载30kg，工作半径1756mm，配备AI视觉系统和力觉传感，可实现人机安全协作。新产品面向汽车零部件装配、物流分拣等高负载场景，已获多家中国车企订单。",
+      "url": "https://www.fanuc.co.jp/",
+      "source": "发那科",
+      "tag": "技术前沿"
+    }
+  ],
+  "2026年7月17日": [
+    {
+      "title": "智赋万企：全球首座风电行业灯塔工厂落地湖南韶山",
+      "summary": "央视报道湖南以数字技术推动传统制造业智能化转型。全球首座风电行业'灯塔工厂'在韶山投产，运用数字孪生、5G、AR/VR技术打造'数字元平台'，产品缺陷率降低20%，交付时间缩短34%。97米风电叶片打磨工序从10人4小时缩减至2人2小时。",
+      "url": "https://news.cctv.com/2026/07/17/ARTIL9n3l2Sow9OKs7Prrr5W260717.shtml",
+      "source": "央视网",
+      "tag": "灯塔工厂"
+    },
+    {
+      "title": "国产超大直径盾构机'焦平一号'下线，配置AI大模型",
+      "summary": "2026年5月29日，国产超大直径土压平衡盾构机'焦平一号'在长沙下线，配置掘进机AI大模型和智能推进系统。铁建重工已实现直径3米至8.61米全系列主轴承全国产化，滚道起伏控制在20微米以内。",
+      "url": "https://news.cctv.com/2026/07/17/ARTIL9n3l2Sow9OKs7Prrr5W260717.shtml",
+      "source": "央视网",
+      "tag": "重大装备"
+    },
+    {
+      "title": "国产替代加速：北京智造上半年四大趋势解析",
+      "summary": "北青网盘点北京智能制造四大趋势：新能源汽车产能集中释放、商业火箭聚势升空、工业AI大模型走进化工厂和药企、人形机器人在汽车总装车间开展工业试用。上半年高技术制造业增加值大涨15.7%，集成电路制造业增速高达82.5%。",
+      "url": "https://www.toutiao.com/article/7662011953599726099",
+      "source": "北青网",
+      "tag": "产业趋势"
+    }
+  ]
+};
+
+function escHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function getTagClass(tag) {
+    var m = {
+        '政策动态': 'tag-policy',
+        '产业数据': 'tag-data',
+        '技术前沿': 'tag-tech',
+        '数字化转型': 'tag-digital',
+        '灯塔工厂': 'tag-lighthouse',
+        '重大装备': 'tag-equip',
+        '产业趋势': 'tag-trend'
+    };
+    return m[tag] || 'tag-tech';
+}
+
+function renderNews() {
+    document.getElementById('updateTime').textContent = '数据更新于：' + UPDATE_TIME;
+    var container = document.getElementById('newsContainer');
+    var dates = Object.keys(NEWS_BY_DATE).sort().reverse();
+    var html = '';
+    for (var d = 0; d < dates.length; d++) {
+        var date = dates[d];
+        var articles = NEWS_BY_DATE[date];
+        html += '<div class="date-group">';
+        html += '<div class="date-label">' + escHtml(date) + '</div>';
+        for (var i = 0; i < articles.length; i++) {
+            var a = articles[i];
+            html += '<div class="news-card">';
+            html += '<div class="card-header">';
+            html += '<span class="tag ' + getTagClass(a.tag) + '">' + escHtml(a.tag) + '</span>';
+            html += '<span class="title">' + escHtml(a.title) + '</span>';
+            html += '</div>';
+            html += '<div class="summary">' + escHtml(a.summary) + '</div>';
+            html += '<div class="meta">';
+            html += '<span>来源：' + escHtml(a.source) + '</span>';
+            html += '<a href="' + escHtml(a.url) + '" target="_blank" rel="noopener">查看原文</a>';
+            html += '</div>';
+            html += '</div>';
+        }
+        html += '</div>';
+    }
+    container.innerHTML = html;
+}
+
+renderNews();
+</script>
+</body>
 </html>
