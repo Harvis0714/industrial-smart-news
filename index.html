@@ -3036,8 +3036,8 @@ if (!NEWS_BY_DATE || Object.keys(NEWS_BY_DATE).length === 0) {
         newsList.forEach(function(item) {
             var card = document.createElement('a');
             card.className = 'news-card';
-            card.href = item.url || '#';
-            card.target = '_blank';
+            card.href = item.url || 'javascript:void(0)';
+            card.target = item.url ? '_blank' : '_self';
             card.rel = 'noopener';
             card.innerHTML =
                 '<div class="meta">' +
